@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, db, doc, setDoc } from '../../firebase';
 import logo from '../assets/Jamiat_Ulema-e-Islam_Logo.png';
 import axios from 'axios';
 

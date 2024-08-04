@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
 import DataScreen from './Views/DataScreen';
 import LoginView from './Views/LoginView';
-import { auth } from '../firebase';
 import EntryForm from './Views/EntryForm';
 
 const App = () => {
