@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Connect to MongoDB using URI from environment variables
 // eslint-disable-next-line no-undef
-const mongoUri = process.env.MONGO_UR||'mongodb+srv://Salman:admin@cluster0.jshy5un.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongoUri = process.env.MONGO_UR;
 
 mongoose.connect(mongoUri)
     .then(() => console.log('Connected to MongoDB'))
