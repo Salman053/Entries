@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db, doc, setDoc } from '../../firebase';
 import logo from '../assets/Jamiat_Ulema-e-Islam_Logo.png';
+import axios from 'axios';
 
 const LoginView = () => {
   const [cnic, setCnic] = useState('');
@@ -11,9 +12,37 @@ const LoginView = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  };
+    setError(''); // Clear any previous errors
 
+    try {
+        // Make the POST request to the backend
+        const response = await axios.post('http://localhost:3000/api/login', {
+            CNIC: cnic,
+            password,
+        });
+
+        // Handle successful login
+        if (response.status === 200) {
+            console.log('Login successful');
+            localStorage.setItem("user", JSON.stringify(response))
+            // Perform additional logic like redirecting the user or saving additional data
+            // Example: window.location.href = '/dashboard';
+        }
+    } catch (err) {
+        // Handle errors
+        if (err.response) {
+            // The server responded with a status other than 2xx
+            setError(err.response.data.message || 'An error occurred');
+        } else if (err.request) {
+            // The request was made but no response was received
+            setError('No response from server');
+        } else {
+            // Something else happened
+            setError('An error occurred');
+        }
+        console.error(err.message);
+    }
+};
   const formatCnic = (value) => {
     const cleaned = value.replace(/\D/g, '');
     if (cleaned.length <= 5) {
@@ -35,8 +64,8 @@ const LoginView = () => {
       <img src={logo} className='w-[30%] xl:w-[25%] mx-auto xl:mx-0' alt="Logo" />
       <form onSubmit={handleSubmit} className="bg-gray-100 rounded-lg w-[80%] xl:w-[40%] px-4 py-12 border flex-column gap-4">
         <h3 className='text-xl text-center font-bold mb-4'>Admin Login</h3>
-        
-  
+
+
 
         {/* CNIC Input Field */}
         <div className="flex-column input-container">

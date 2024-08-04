@@ -74,6 +74,8 @@ const EntryForm = () => {
             required
           />
         </div>
+
+        <button type='submit' className='btn'>Submit</button>
     </div>
   )
 }
