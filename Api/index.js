@@ -11,7 +11,11 @@ const app = express();
 // Load environment variables from .env file
 config();  
 
-app.use(cors());
+app.use(cors({
+    origin:['https://entries-chi.vercel.app'],
+    methods:["POST","GET"],
+    credentials:true
+}));
 app.use(express.json());
 
 // Connect to MongoDB using URI from environment variables
