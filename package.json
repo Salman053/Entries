@@ -5,14 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-   "builds": [
-    { "src": "api/**/*.js", "use": "@vercel/node" },
-    { "src": "vite.config.js", "use": "@vercel/static-build" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
+    "build": "vite build ",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
